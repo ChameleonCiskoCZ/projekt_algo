@@ -1,5 +1,5 @@
-# PROJEKT DENÍK
-**Daniel Oplíštil**
+# PROJEKT DENÍK - ***Daniel Oplíštil***
+
 
 ## Use Case 1: Přidání nového záznamu
 Uživatel vybere příkaz "novy"
@@ -13,6 +13,8 @@ Program vyzve uživatele k zadání textu záznamu
 Uživatel zadá text záznamu
 
 Program zobrazí nový záznam na obrazovce
+
+
 
 ***Alternativní tok***
 
