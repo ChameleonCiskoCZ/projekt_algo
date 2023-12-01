@@ -3,10 +3,15 @@
 
 ## Use Case 1: Přidání nového záznamu
 Uživatel vybere příkaz "novy"
+
 Program vyzve uživatele k zadání data ve formátu "dd.MM.yyyy"
+
 Uživatel zadá platné datum
+
 Program vyzve uživatele k zadání textu záznamu
+
 Uživatel zadá text záznamu
+
 Program zobrazí nový záznam na obrazovce
 
 ***Alternativní tok***
