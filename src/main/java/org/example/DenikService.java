@@ -12,6 +12,7 @@ import com.google.inject.Inject;
 public class DenikService implements DenikInterfaceService {
     @Inject
     Scanner scanner;
+    private ZaznamService temporaryZaznam;
     private LinkedList<ZaznamService> zaznamy = new LinkedList<>();
 
     @Override
@@ -21,8 +22,7 @@ public class DenikService implements DenikInterfaceService {
 
     @Override
     public void pridejZaznam(Date datum, String text) {
-        ZaznamService zaznam = new ZaznamService(datum, text);
-        zaznamy.addLast(zaznam);
+        temporaryZaznam = new ZaznamService(datum, text);
     }
 
     @Override
@@ -75,12 +75,12 @@ public class DenikService implements DenikInterfaceService {
     }
 
     public void ulozitZaznam() {
-        List<ZaznamService> zaznamy = getZaznamy();
-        if (!zaznamy.isEmpty()) {
-            ZaznamService aktualniZaznam = zaznamy.get(aktualniZaznamIndex);
-            System.out.println("Záznam uložen:\n" + aktualniZaznam);
+        if (temporaryZaznam != null) {
+            zaznamy.addLast(temporaryZaznam);
+            System.out.println("Záznam byl úspěšně uložen.");
+            temporaryZaznam = null; // Reset temporary variable
         } else {
-            System.out.println("Deník je prázdný. Nelze uložit žádný záznam.");
+            System.out.println("Není žádný záznam k uložení.");
         }
     }
 
@@ -114,7 +114,12 @@ public class DenikService implements DenikInterfaceService {
         List<ZaznamService> zaznamy = getZaznamy();
         System.out.println("Počet záznamů v deníku: " + zaznamy.size());
         if (!zaznamy.isEmpty()) {
-            System.out.println(zaznamy.get(zaznamy.size() - 1));
+            if (aktualniZaznamIndex >= 0 && aktualniZaznamIndex < zaznamy.size()) {
+                ZaznamService aktualniZaznam = zaznamy.get(aktualniZaznamIndex);
+                System.out.println("Aktuální záznam:\n" + aktualniZaznam);
+            } else {
+                System.out.println("Prázdná stránka");
+            }
         }
     }
 }
